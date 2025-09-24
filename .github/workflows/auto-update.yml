@@ -1,0 +1,46 @@
+name: Auto Update Daily Report
+
+# Déclenchement du workflow
+on:
+  # Exécution quotidienne à 9h00 UTC (ajustez selon votre fuseau horaire)
+  schedule:
+    - cron: "0 9 * * *"
+
+  # Permet aussi de déclencher manuellement
+  workflow_dispatch:
+
+# Permissions nécessaires pour le workflow
+permissions:
+  contents: write
+
+jobs:
+  update-document:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests python-dateutil
+
+      - name: Generate daily report
+        run: |
+          python scripts/generate_report.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --staged --quiet || git commit -m "🤖 Auto-update: $(date '+%Y-%m-%d %H:%M:%S')"
+          git push

@@ -1,0 +1,33 @@
+# Configuration d'environnement pour le projet Auto-Update GitHub
+# Copiez ce fichier vers config/environment.json et modifiez les valeurs selon vos besoins
+
+{
+  "project": {
+    "name": "Auto-Update GitHub Project",
+    "version": "1.0.0",
+    "timezone": "UTC",
+    "execution_hour": 9
+  },
+  "apis": {
+    "endpoint_1": "https://httpbin.org/json",
+    "endpoint_2": "https://api.github.com/zen",
+    "timeout": 10
+  },
+  "git": {
+    "user_name": "Auto-Update Bot",
+    "user_email": "action@github.com"
+  },
+  "notifications": {
+    "slack_webhook_url": "",
+    "discord_webhook_url": "",
+    "email_notifications": false
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/auto-update.log"
+  },
+  "testing": {
+    "test_mode": false,
+    "mock_api_responses": false
+  }
+}

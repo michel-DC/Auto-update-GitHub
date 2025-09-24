@@ -1,0 +1,39 @@
+{
+  "project_name": "Auto-Update GitHub Project",
+  "version": "1.0.0",
+  "description": "Projet automatisé de mise à jour quotidienne de documents sur GitHub",
+  "timezone": "UTC",
+  "execution_hour": 9,
+  "cron_schedule": "0 9 * * *",
+  "api_endpoints": ["https://httpbin.org/json"],
+  "features": {
+    "auto_update": true,
+    "api_testing": true,
+    "history_tracking": true,
+    "manual_trigger": true,
+    "timezone_support": true
+  },
+  "output_files": {
+    "daily_report": "daily-report.md",
+    "history_file": "data/update_history.json"
+  },
+  "dependencies": {
+    "python": "3.11+",
+    "packages": ["requests>=2.31.0", "python-dateutil>=2.8.2"]
+  },
+  "github_actions": {
+    "workflow_file": ".github/workflows/auto-update.yml",
+    "permissions": {
+      "contents": "write"
+    },
+    "triggers": {
+      "schedule": true,
+      "manual": true
+    }
+  },
+  "documentation": {
+    "readme": "README.md",
+    "workflow_docs": "Documentation du workflow GitHub Actions",
+    "script_docs": "Documentation des scripts Python"
+  }
+}

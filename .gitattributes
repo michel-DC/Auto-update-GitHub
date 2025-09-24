@@ -1,0 +1,59 @@
+# Configuration Git pour le projet Auto-Update GitHub
+
+# Fichiers texte avec fin de ligne LF
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+
+# Fichiers binaires
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+
+# Fichiers de configuration
+.gitignore text
+.gitattributes text
+.editorconfig text
+
+# Fichiers de documentation
+README.md text
+DEVELOPER.md text
+CONTRIBUTING.md text
+SECURITY.md text
+SUPPORT.md text
+AUTHORS.md text
+CHANGELOG.md text
+
+# Fichiers de test
+tests/*.py text
+scripts/*.py text
+
+# Fichiers de configuration
+config/*.json text
+config/*.py text
+.vscode/*.json text
+.vscode/*.md text
+
+# Fichiers de déploiement
+deploy.sh text
+deploy.ps1 text
+requirements.txt text
+pyproject.toml text
+
+# Fichiers de données
+data/*.json text
+*.md text
+
+# Fichiers de workflow
+.github/workflows/*.yml text
+.github/workflows/*.yaml text

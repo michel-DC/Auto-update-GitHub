@@ -1,0 +1,100 @@
+# Configuration EditorConfig pour le projet Auto-Update GitHub
+
+root = true
+
+# Configuration générale
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Fichiers Python
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Fichiers Markdown
+[*.md]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers YAML
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers JSON
+[*.json]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers JavaScript/TypeScript
+[*.{js,ts}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers HTML
+[*.html]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers CSS
+[*.css]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers Shell
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers PowerShell
+[*.ps1]
+indent_style = space
+indent_size = 4
+max_line_length = 80
+
+# Fichiers de configuration
+[*.{ini,cfg,conf}]
+indent_style = space
+indent_size = 4
+max_line_length = 80
+
+# Fichiers de test
+[tests/*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Fichiers de scripts
+[scripts/*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Fichiers de configuration
+[config/*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Fichiers VS Code
+[.vscode/*.json]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# Fichiers de déploiement
+[deploy.*]
+indent_style = space
+indent_size = 2
+max_line_length = 80
