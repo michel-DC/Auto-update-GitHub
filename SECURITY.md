@@ -1,4 +1,4 @@
-# 🔒 Politique de Sécurité
+# Politique de Sécurité
 
 > **Politique de sécurité pour le projet Auto-Update GitHub**
 
