@@ -2,12 +2,12 @@ name: Auto Update Daily Report
 
 # Déclenchement du workflow
 on:
-  # Exécution 4 fois par jour : 6h, 12h, 18h, 0h UTC
+  # Exécution 4 fois par jour : 6h, 7h, 8h, 9h UTC
   schedule:
     - cron: "0 6 * * *" # 6h00 UTC
     - cron: "0 7   * * *" # 7h00 UTC
     - cron: "0 8 * * *" # 8h00 UTC
-    - cron: "0 9 * * *" # 9h00 UTC (minuit)
+    - cron: "0 9 * * *" # 9h00 UTC
 
   # Permet aussi de déclencher manuellement
   workflow_dispatch:
@@ -48,9 +48,9 @@ jobs:
           # Déterminer le numéro d'exécution basé sur l'heure
           HOUR=$(date -u '+%H')
           if [ "$HOUR" = "06" ]; then EXEC_NUM="1/4"
-          elif [ "$HOUR" = "12" ]; then EXEC_NUM="2/4"
-          elif [ "$HOUR" = "18" ]; then EXEC_NUM="3/4"
-          elif [ "$HOUR" = "00" ]; then EXEC_NUM="4/4"
+          elif [ "$HOUR" = "07" ]; then EXEC_NUM="2/4"
+          elif [ "$HOUR" = "08" ]; then EXEC_NUM="3/4"
+          elif [ "$HOUR" = "09" ]; then EXEC_NUM="4/4"
           else EXEC_NUM="N/A"
           fi
           git diff --staged --quiet || git commit -m "🤖 Auto-update #$EXEC_NUM: $(date '+%Y-%m-%d %H:%M:%S') UTC"
