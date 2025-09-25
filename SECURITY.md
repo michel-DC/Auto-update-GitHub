@@ -2,7 +2,7 @@
 
 > **Politique de sécurité pour le projet Auto-Update GitHub**
 
-## 📋 Versions Supportées
+## Versions Supportées
 
 | Version | Supporté |
 | ------- | -------- |
