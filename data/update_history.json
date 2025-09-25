@@ -1,5 +1,11 @@
 [
   {
+    "date": "2025-09-25",
+    "time": "09:10:25",
+    "status": "success",
+    "details": "Rapport généré avec succès - API: success"
+  },
+  {
     "date": "2025-09-24",
     "time": "20:20:01",
     "status": "success",
