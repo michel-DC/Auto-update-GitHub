@@ -69,34 +69,67 @@ def save_update_history(history):
     with open(history_file, 'w', encoding='utf-8') as f:
         json.dump(history, f, indent=2, ensure_ascii=False)
 
+def get_next_execution_time(current_time):
+    """Calcule la prochaine heure d'exécution (6h, 12h, 18h, 0h)"""
+    execution_hours = [6, 12, 18, 0]
+    current_hour = current_time.hour
+    
+    # Trouver la prochaine heure d'exécution
+    for hour in execution_hours:
+        if hour > current_hour:
+            return current_time.replace(hour=hour, minute=0, second=0, microsecond=0)
+    
+    # Si aucune heure trouvée aujourd'hui, prendre 6h demain
+    next_day = current_time + timedelta(days=1)
+    return next_day.replace(hour=6, minute=0, second=0, microsecond=0)
+
+def get_execution_number():
+    """Détermine le numéro d'exécution de la journée (1-4)"""
+    now = datetime.now(timezone.utc)
+    execution_hours = [6, 12, 18, 0]
+    
+    for i, hour in enumerate(execution_hours):
+        if now.hour >= hour:
+            return i + 1
+    return 1
+
 def generate_report_content(time_info, api_info):
     """Génère le contenu du rapport Markdown"""
     
     # Chargement de l'historique
     history = load_update_history()
     
+    # Déterminer le numéro d'exécution
+    exec_number = get_execution_number()
+    
     # Ajout de la nouvelle entrée
     new_entry = {
         'date': time_info['datetime'].strftime('%Y-%m-%d'),
         'time': time_info['datetime'].strftime('%H:%M:%S'),
+        'execution_number': exec_number,
         'status': 'success',
-        'details': f"Rapport généré avec succès - API: {api_info['status']}"
+        'details': f"Rapport généré avec succès (Exécution #{exec_number}/4) - API: {api_info['status']}"
     }
     history.insert(0, new_entry)  # Ajouter au début
     
-    # Limiter l'historique aux 10 dernières entrées
-    history = history[:10]
+    # Limiter l'historique aux 20 dernières entrées (5 jours x 4 exécutions)
+    history = history[:20]
     save_update_history(history)
     
+    # Calcul de la prochaine exécution
+    next_execution = get_next_execution_time(time_info['datetime'])
+    
     # Génération du contenu Markdown
-    content = f"""# 📊 Rapport Quotidien Automatique
+    content = f"""# 📊 Rapport Automatique Multi-Quotidien
 
-> **Dernière mise à jour :** {time_info['datetime'].strftime('%Y-%m-%d %H:%M:%S')} UTC
+> **Dernière mise à jour :** {time_info['datetime'].strftime('%Y-%m-%d %H:%M:%S')} UTC  
+> **Exécution :** #{exec_number}/4 de la journée
 
 ## 📅 Informations Générales
 
 - **Date :** {time_info['datetime'].strftime('%Y-%m-%d')}
 - **Heure :** {time_info['datetime'].strftime('%H:%M:%S')} UTC
+- **Exécution du jour :** {exec_number}/4
 - **Statut :** ✅ Généré automatiquement
 
 ## 🌍 Données du Jour
@@ -119,13 +152,14 @@ def generate_report_content(time_info, api_info):
 
 ## 🔄 Historique des Mises à Jour
 
-| Date | Heure | Statut | Détails |
-|------|-------|--------|---------|"""
+| Date | Heure | Exécution | Statut | Détails |
+|------|-------|-----------|--------|---------|"""
 
     # Ajout de l'historique
     for entry in history:
         status_emoji = "✅" if entry['status'] == 'success' else "❌"
-        content += f"\n| {entry['date']} | {entry['time']} | {status_emoji} | {entry['details']} |"
+        exec_num = entry.get('execution_number', 'N/A')
+        content += f"\n| {entry['date']} | {entry['time']} | #{exec_num}/4 | {status_emoji} | {entry['details']} |"
 
     content += f"""
 
@@ -133,11 +167,12 @@ def generate_report_content(time_info, api_info):
 
 - **Total de mises à jour :** {len(history)}
 - **Dernière exécution :** {time_info['datetime'].strftime('%Y-%m-%d %H:%M:%S')} UTC
-- **Prochaine exécution :** {(time_info['datetime'].replace(hour=9, minute=0, second=0, microsecond=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')} UTC
+- **Prochaine exécution :** {next_execution.strftime('%Y-%m-%d %H:%M:%S')} UTC
+- **Fréquence :** 4 fois par jour (6h, 12h, 18h, 0h UTC)
 
 ---
 
-*Ce document est mis à jour automatiquement tous les jours à 9h00 UTC via GitHub Actions.*
+*Ce document est mis à jour automatiquement 4 fois par jour via GitHub Actions.*
 *Dernière génération : {time_info['datetime'].strftime('%Y-%m-%d %H:%M:%S')} UTC*
 """
 

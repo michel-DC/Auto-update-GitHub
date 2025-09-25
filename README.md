@@ -2,11 +2,11 @@
 
 > **Projet automatisé de mise à jour quotidienne de documents sur GitHub**
 
-Ce projet utilise **GitHub Actions** pour mettre à jour automatiquement un fichier Markdown tous les jours à 9h00 UTC. Il démontre comment automatiser la génération et la publication de contenu sur GitHub.
+Ce projet utilise **GitHub Actions** pour mettre à jour automatiquement un fichier Markdown 4 fois par jour (6h, 12h, 18h, 0h UTC). Il démontre comment automatiser la génération et la publication de contenu sur GitHub.
 
 ## 📋 Fonctionnalités
 
-- ✅ **Mise à jour automatique quotidienne** via GitHub Actions
+- ✅ **Mise à jour automatique 4 fois par jour** via GitHub Actions
 - ✅ **Génération de contenu dynamique** avec données en temps réel
 - ✅ **Historique des mises à jour** sauvegardé
 - ✅ **Test de connectivité API** intégré
@@ -42,7 +42,7 @@ cd auto-update-github-project
 
 Le workflow est déjà configuré dans `.github/workflows/auto-update.yml`. Il s'exécute :
 
-- **Automatiquement** : Tous les jours à 9h00 UTC
+- **Automatiquement** : 4 fois par jour (6h, 12h, 18h, 0h UTC)
 - **Manuellement** : Via l'onglet "Actions" de GitHub
 
 ### 3. Permissions Requises
@@ -61,15 +61,18 @@ Le repository doit avoir les permissions suivantes :
 
 ```yaml
 schedule:
-  - cron: "0 9 * * *" # 9h00 UTC tous les jours
+  - cron: "0 6 * * *" # 6h00 UTC
+  - cron: "0 12 * * *" # 12h00 UTC
+  - cron: "0 18 * * *" # 18h00 UTC
+  - cron: "0 0 * * *" # 0h00 UTC (minuit)
 ```
 
 **Exemples de cron :**
 
-- `'0 9 * * *'` : 9h00 UTC tous les jours
-- `'0 14 * * *'` : 14h00 UTC tous les jours (16h00 en France)
-- `'0 9 * * 1'` : 9h00 UTC tous les lundis
-- `'0 9 1 * *'` : 9h00 UTC le 1er de chaque mois
+- `'0 6 * * *'` : 6h00 UTC tous les jours
+- `'0 12 * * *'` : 12h00 UTC tous les jours
+- `'0 18 * * *'` : 18h00 UTC tous les jours
+- `'0 0 * * *'` : 0h00 UTC tous les jours (minuit)
 
 ### Personnaliser le Contenu
 

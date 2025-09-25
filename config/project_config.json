@@ -1,10 +1,10 @@
 {
   "project_name": "Auto-Update GitHub Project",
   "version": "1.0.0",
-  "description": "Projet automatisé de mise à jour quotidienne de documents sur GitHub",
+  "description": "Projet automatisé de mise à jour 4 fois par jour de documents sur GitHub",
   "timezone": "UTC",
-  "execution_hour": 9,
-  "cron_schedule": "0 9 * * *",
+  "execution_hours": [6, 12, 18, 0],
+  "cron_schedules": ["0 6 * * *", "0 12 * * *", "0 18 * * *", "0 0 * * *"],
   "api_endpoints": ["https://httpbin.org/json"],
   "features": {
     "auto_update": true,

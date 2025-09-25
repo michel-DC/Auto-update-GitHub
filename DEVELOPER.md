@@ -171,7 +171,7 @@ cron_france = get_cron_expression('Europe/Paris', 9)
   "project_name": "Auto-Update GitHub Project",
   "version": "1.0.0",
   "timezone": "UTC",
-  "execution_hour": 9,
+  "execution_hours": [6, 12, 18, 0],
   "features": {
     "auto_update": true,
     "api_testing": true,
@@ -216,7 +216,10 @@ git push origin main
 ```yaml
 # Vérifier la syntaxe cron
 schedule:
-  - cron: "0 9 * * *" # 9h00 UTC tous les jours
+  - cron: "0 6 * * *" # 6h00 UTC
+  - cron: "0 12 * * *" # 12h00 UTC
+  - cron: "0 18 * * *" # 18h00 UTC
+  - cron: "0 0 * * *" # 0h00 UTC (minuit)
 ```
 
 #### 2. Erreur de permissions
