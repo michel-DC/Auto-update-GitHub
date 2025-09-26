@@ -42,8 +42,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "djoumessi.michelc@gmail.com"
+          git config --local user.name "michel-DC"
           git add .
           # Déterminer le numéro d'exécution basé sur l'heure
           HOUR=$(date -u '+%H')
