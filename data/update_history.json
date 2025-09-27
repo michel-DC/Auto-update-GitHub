@@ -1,6 +1,13 @@
 [
   {
     "date": "2025-09-27",
+    "time": "09:08:40",
+    "execution_number": 1,
+    "status": "success",
+    "details": "Rapport généré avec succès (Exécution #1/4) - API: error"
+  },
+  {
+    "date": "2025-09-27",
     "time": "08:13:02",
     "execution_number": 1,
     "status": "success",
