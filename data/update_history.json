@@ -1,6 +1,13 @@
 [
   {
     "date": "2025-10-07",
+    "time": "08:15:45",
+    "execution_number": 1,
+    "status": "success",
+    "details": "Rapport généré avec succès (Exécution #1/4) - API: error"
+  },
+  {
+    "date": "2025-10-07",
     "time": "07:24:37",
     "execution_number": 1,
     "status": "success",
@@ -128,13 +135,6 @@
   {
     "date": "2025-10-02",
     "time": "09:09:40",
-    "execution_number": 1,
-    "status": "success",
-    "details": "Rapport généré avec succès (Exécution #1/4) - API: success"
-  },
-  {
-    "date": "2025-10-02",
-    "time": "08:14:55",
     "execution_number": 1,
     "status": "success",
     "details": "Rapport généré avec succès (Exécution #1/4) - API: success"
